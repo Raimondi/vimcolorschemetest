@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\sms.c.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Statement { color: #ffff60; font-weight: bold; }
+.Comment { color: #80a0ff; }
+.Type { color: #60ff60; font-weight: bold; }
+pre { font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+-->
+</style>
+</head>
+<body>
+<pre>
+#define UNICODE
+#include &lt;windows.h&gt;
+
+<span class="Type">int</span> main(<span class="Type">int</span> argc, <span class="Type">char</span> **argv) {
+  <span class="Type">int</span> speed = 0, speed1 = 0, speed2 = 0; <span class="Comment">// </span>1<span class="Comment">-</span>20
+  printf(&quot;Set Mouse Speed by Maverick\n&quot;);
+
+  SystemParametersInfo(SPI_GETMOUSESPEED, 0, &amp;speed, 0);
+  printf(&quot;Current speed: %2d\n&quot;, speed);
+
+  if (argc == 1) <span class="Statement">return</span> 0;
+  if (argc &gt;= 2) sscanf(argv[1], &quot;%d&quot;, &amp;speed1);
+  if (argc &gt;= 3) sscanf(argv[2], &quot;%d&quot;, &amp;speed2);
+
+  if (argc == 2) <span class="Comment">// set speed to first value</span>
+    speed = speed1;
+  else if (speed == speed1 || speed == speed2) <span class="Comment">// alternate</span>
+    speed = speed1 + speed2 - speed;
+  else
+    speed = speed1;  <span class="Comment">// start with first value</span>
+
+  SystemParametersInfo(SPI_SETMOUSESPEED, 0,  speed, 0);
+  SystemParametersInfo(SPI_GETMOUSESPEED, 0, &amp;speed, 0);
+  printf(&quot;New speed:     %2d\n&quot;, speed);
+  <span class="Statement">return</span> 0;
+}
+</pre>
+</body>
+</html>

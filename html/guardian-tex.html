@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\test.tex.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Special { color: #bbddff; background-color: #221100; font-weight: bold; }
+.Operator { color: #cc9966; background-color: #221100; font-weight: bold; }
+.Statement { color: #ffffcc; background-color: #221100; font-weight: bold; }
+.SpecialChar { color: #bbddff; background-color: #221100; font-weight: bold; }
+pre { font-family: monospace; color: #ffffff; background-color: #221100; }
+body { font-family: monospace; color: #ffffff; background-color: #221100; }
+.Comment { color: #dddddd; background-color: #445566; }
+.Include { color: #99cc99; background-color: #221100; font-weight: bold; }
+.Delimiter { color: #ffffff; background-color: #221100; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="Comment">% Time-stamp: &lt;2004/04/06, 16:46:43 (EST), maverick, test.tex&gt;</span>
+<span class="Include">\subsection</span><span class="Delimiter">{</span>Strict diagonal-dominance<span class="Delimiter">}</span>
+Suppose we are given a matrix <span class="Delimiter">$</span><span class="Special">A</span><span class="Operator">=</span><span class="Special">L+D</span><span class="Delimiter">$</span>, where <span class="Delimiter">$</span><span class="Special">L</span><span class="Delimiter">$</span> is a Laplacian and
+<span class="Delimiter">$</span><span class="Special">D</span><span class="Delimiter">$</span> is a nonnegative diagonal matrix, for which we seek to construct a
+preconditioner.
+
+We may construct a Support Tree Preconditioner, <span class="Delimiter">$</span><span class="Special">B </span><span class="Operator">=</span>
+<span class="Statement">\begin</span><span class="Delimiter">{</span><span class="Special">pmatrix</span><span class="Delimiter">}</span><span class="Special"> T </span><span class="Delimiter">&amp;</span><span class="Special"> U</span><span class="SpecialChar">\\</span><span class="Special">U</span><span class="Statement">\TT</span><span class="Special"> </span><span class="Delimiter">&amp;</span><span class="Special"> W</span><span class="Statement">\end</span><span class="Delimiter">{</span><span class="Special">pmatrix</span><span class="Delimiter">}$</span> for <span class="Delimiter">$</span><span class="Special">L</span><span class="Delimiter">$</span> and to use <span class="Delimiter">$</span><span class="Special">B'</span>
+<span class="Operator">=</span><span class="Statement">\begin</span><span class="Delimiter">{</span><span class="Special">pmatrix</span><span class="Delimiter">}</span><span class="Special"> T </span><span class="Delimiter">&amp;</span><span class="Special"> U </span><span class="SpecialChar">\\</span><span class="Special">U</span><span class="Statement">\TT</span><span class="Special"> </span><span class="Delimiter">&amp;</span><span class="Special"> W+D</span><span class="Statement">\end</span><span class="Delimiter">{</span><span class="Special">pmatrix</span><span class="Delimiter">}$</span> as a preconditioner
+for <span class="Delimiter">$</span><span class="Special">A</span><span class="Delimiter">$</span>.  If we let <span class="Delimiter">$</span><span class="Special">Q </span><span class="Operator">=</span><span class="Special"> W - U</span><span class="Statement">\TT</span><span class="Special"> T</span><span class="Statement">\IV</span><span class="Special"> U</span><span class="Delimiter">$</span>, by Lemma~<span class="Statement">\ref{</span><span class="Special">lem:stcg</span><span class="Statement">}</span> it
+suffices to bound <span class="Delimiter">$</span><span class="Statement">\sigma</span><span class="Special">(A/Q+D)</span><span class="Delimiter">$</span> and <span class="Delimiter">$</span><span class="Statement">\sigma</span><span class="Special">(Q+D/A)</span><span class="Delimiter">$</span>.
+
+<span class="Statement">\begin</span><span class="Delimiter">{</span><span class="Include">proposition</span><span class="Delimiter">}</span><span class="Statement">\label{</span><span class="Special">prop:XZ-YZ</span><span class="Statement">}</span>
+If <span class="Delimiter">$</span><span class="Special">X</span><span class="Delimiter">$</span>, <span class="Delimiter">$</span><span class="Special">Y</span><span class="Delimiter">$</span>, and <span class="Delimiter">$</span><span class="Special">Z</span><span class="Delimiter">$</span> are spsd matrices of the same size then
+<span class="Delimiter">$</span><span class="Statement">\sigma</span><span class="Special">(X+Z/Y+Z) </span><span class="Statement">\leq</span><span class="Special"> </span><span class="Statement">\max</span><span class="SpecialChar">\{</span><span class="Statement">\sigma</span><span class="Special">(X/Y),\, 1</span><span class="SpecialChar">\}</span><span class="Delimiter">$</span>.
+<span class="Statement">\end</span><span class="Delimiter">{</span><span class="Include">proposition</span><span class="Delimiter">}</span>
+
+<span class="Statement">\Proof</span> We have <span class="Delimiter">$</span><span class="Statement">\sigma</span><span class="Special">(X+Z/Y+Z) </span><span class="Operator">=</span><span class="Special"> </span>
+<span class="Statement">\min</span><span class="SpecialChar">\{</span><span class="Statement">\tau</span><span class="Special"> </span><span class="Statement">\mid</span><span class="Special"> </span><span class="Statement">\forall\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Special">,\, </span><span class="Statement">\tau\cdot</span><span class="Special"> </span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Statement">\TT</span><span class="Special"> (Y+Z)</span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Special"> </span><span class="Statement">\geq</span>
+<span class="Special">       </span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Statement">\TT</span><span class="Special">(X+Z)</span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="SpecialChar">\}</span><span class="Special"> </span><span class="Operator">=</span><span class="Special"> </span>
+<span class="Statement">\min</span><span class="SpecialChar">\{</span><span class="Statement">\tau</span><span class="Special"> </span><span class="Statement">\mid</span><span class="Special"> </span><span class="Statement">\forall\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Special">,\, (</span><span class="Statement">\tau</span><span class="Special">-1)</span><span class="Statement">\cdot</span><span class="Special"> </span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Statement">\TT</span><span class="Special"> Z</span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Special"> + </span>
+<span class="Special">      </span><span class="Statement">\tau</span><span class="Special"> </span><span class="Statement">\cdot\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Statement">\TT</span><span class="Special"> Y</span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Special"> </span><span class="Statement">\geq</span><span class="Special"> </span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="Statement">\TT</span><span class="Special"> X</span><span class="Statement">\vv</span><span class="Delimiter">{</span><span class="Special">x</span><span class="Delimiter">}</span><span class="SpecialChar">\}</span><span class="Special"> </span><span class="Statement">\leq</span><span class="Special"> </span>
+<span class="Statement">\max</span><span class="SpecialChar">\{</span><span class="Special">1,\,</span><span class="Statement">\sigma</span><span class="Special">(X/Y)</span><span class="SpecialChar">\}</span><span class="Delimiter">$</span>.<span class="Statement">\QED</span>
+</pre>
+</body>
+</html>

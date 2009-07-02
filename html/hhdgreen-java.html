@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\GetEnv.java.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Constant { color: #ffa0a0; background-color: #000000; }
+.Statement { color: #ffffa0; background-color: #000000; }
+.Type { color: #a0ffa0; background-color: #000000; }
+.Comment { color: #a0a0ff; background-color: #000000; }
+.Special { color: #a0ffff; background-color: #000000; }
+.Identifier { color: #00ffff; background-color: #000000; }
+pre { font-family: monospace; color: #e0e0e0; background-color: #000000; }
+body { font-family: monospace; color: #e0e0e0; background-color: #000000; }
+.PreProc { color: #ffa0ff; background-color: #000000; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="PreProc">import</span> java.util.Map;
+<span class="PreProc">import</span> java.util.TreeSet;
+
+<span class="Type">public</span> <span class="Type">class</span> GetEnv {
+  <span class="Comment">/**</span>
+<span class="Comment">   *</span><span class="Special"> let's test generics</span>
+<span class="Comment">   </span><span class="Comment">* </span><span class="Special">@param</span><span class="Identifier"> args</span><span class="Comment"> the command line arguments</span>
+<span class="Comment">   */</span>
+  <span class="Type">public</span> <span class="Type">static</span> <span class="Type">void</span> main(String[] args) {
+    <span class="Comment">// get a map of environment variables</span>
+    Map&lt;String, String&gt; env = System.getenv();
+    <span class="Comment">// build a sorted set out of the keys and iterate</span>
+    <span class="Statement">for</span>(String k: <span class="Statement">new</span> TreeSet&lt;String&gt;(env.keySet())) {
+      System.out.printf(<span class="Constant">&quot;%s = %s</span><span class="Special">\n</span><span class="Constant">&quot;</span>, k, env.get(k));
+    }
+  }
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\test.tex.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Statement { color: #bd9800; font-weight: bold; }
+pre { font-family: monospace; color: #f9f9ff; background-color: #192224; }
+body { font-family: monospace; color: #f9f9ff; background-color: #192224; }
+.Comment { color: #5e6c70; font-style: italic; }
+.PreProc { color: #bd9800; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="Comment">% Time-stamp: &lt;2004/04/06, 16:46:43 (EST), maverick, test.tex&gt;</span>
+<span class="PreProc">\subsection</span><span class="PreProc">{</span>Strict diagonal-dominance<span class="PreProc">}</span>
+Suppose we are given a matrix <span class="PreProc">$</span><span class="PreProc">A</span><span class="Statement">=</span><span class="PreProc">L+D</span><span class="PreProc">$</span>, where <span class="PreProc">$</span><span class="PreProc">L</span><span class="PreProc">$</span> is a Laplacian and
+<span class="PreProc">$</span><span class="PreProc">D</span><span class="PreProc">$</span> is a nonnegative diagonal matrix, for which we seek to construct a
+preconditioner.
+
+We may construct a Support Tree Preconditioner, <span class="PreProc">$</span><span class="PreProc">B </span><span class="Statement">=</span>
+<span class="Statement">\begin</span><span class="PreProc">{</span><span class="PreProc">pmatrix</span><span class="PreProc">}</span><span class="PreProc"> T </span><span class="PreProc">&amp;</span><span class="PreProc"> U</span><span class="PreProc">\\</span><span class="PreProc">U</span><span class="Statement">\TT</span><span class="PreProc"> </span><span class="PreProc">&amp;</span><span class="PreProc"> W</span><span class="Statement">\end</span><span class="PreProc">{</span><span class="PreProc">pmatrix</span><span class="PreProc">}$</span> for <span class="PreProc">$</span><span class="PreProc">L</span><span class="PreProc">$</span> and to use <span class="PreProc">$</span><span class="PreProc">B'</span>
+<span class="Statement">=</span><span class="Statement">\begin</span><span class="PreProc">{</span><span class="PreProc">pmatrix</span><span class="PreProc">}</span><span class="PreProc"> T </span><span class="PreProc">&amp;</span><span class="PreProc"> U </span><span class="PreProc">\\</span><span class="PreProc">U</span><span class="Statement">\TT</span><span class="PreProc"> </span><span class="PreProc">&amp;</span><span class="PreProc"> W+D</span><span class="Statement">\end</span><span class="PreProc">{</span><span class="PreProc">pmatrix</span><span class="PreProc">}$</span> as a preconditioner
+for <span class="PreProc">$</span><span class="PreProc">A</span><span class="PreProc">$</span>.  If we let <span class="PreProc">$</span><span class="PreProc">Q </span><span class="Statement">=</span><span class="PreProc"> W - U</span><span class="Statement">\TT</span><span class="PreProc"> T</span><span class="Statement">\IV</span><span class="PreProc"> U</span><span class="PreProc">$</span>, by Lemma~<span class="Statement">\ref{</span><span class="PreProc">lem:stcg</span><span class="Statement">}</span> it
+suffices to bound <span class="PreProc">$</span><span class="Statement">\sigma</span><span class="PreProc">(A/Q+D)</span><span class="PreProc">$</span> and <span class="PreProc">$</span><span class="Statement">\sigma</span><span class="PreProc">(Q+D/A)</span><span class="PreProc">$</span>.
+
+<span class="Statement">\begin</span><span class="PreProc">{</span><span class="PreProc">proposition</span><span class="PreProc">}</span><span class="Statement">\label{</span><span class="PreProc">prop:XZ-YZ</span><span class="Statement">}</span>
+If <span class="PreProc">$</span><span class="PreProc">X</span><span class="PreProc">$</span>, <span class="PreProc">$</span><span class="PreProc">Y</span><span class="PreProc">$</span>, and <span class="PreProc">$</span><span class="PreProc">Z</span><span class="PreProc">$</span> are spsd matrices of the same size then
+<span class="PreProc">$</span><span class="Statement">\sigma</span><span class="PreProc">(X+Z/Y+Z) </span><span class="Statement">\leq</span><span class="PreProc"> </span><span class="Statement">\max</span><span class="PreProc">\{</span><span class="Statement">\sigma</span><span class="PreProc">(X/Y),\, 1</span><span class="PreProc">\}</span><span class="PreProc">$</span>.
+<span class="Statement">\end</span><span class="PreProc">{</span><span class="PreProc">proposition</span><span class="PreProc">}</span>
+
+<span class="Statement">\Proof</span> We have <span class="PreProc">$</span><span class="Statement">\sigma</span><span class="PreProc">(X+Z/Y+Z) </span><span class="Statement">=</span><span class="PreProc"> </span>
+<span class="Statement">\min</span><span class="PreProc">\{</span><span class="Statement">\tau</span><span class="PreProc"> </span><span class="Statement">\mid</span><span class="PreProc"> </span><span class="Statement">\forall\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="PreProc">,\, </span><span class="Statement">\tau\cdot</span><span class="PreProc"> </span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="Statement">\TT</span><span class="PreProc"> (Y+Z)</span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="PreProc"> </span><span class="Statement">\geq</span>
+<span class="PreProc">       </span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="Statement">\TT</span><span class="PreProc">(X+Z)</span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="PreProc">\}</span><span class="PreProc"> </span><span class="Statement">=</span><span class="PreProc"> </span>
+<span class="Statement">\min</span><span class="PreProc">\{</span><span class="Statement">\tau</span><span class="PreProc"> </span><span class="Statement">\mid</span><span class="PreProc"> </span><span class="Statement">\forall\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="PreProc">,\, (</span><span class="Statement">\tau</span><span class="PreProc">-1)</span><span class="Statement">\cdot</span><span class="PreProc"> </span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="Statement">\TT</span><span class="PreProc"> Z</span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="PreProc"> + </span>
+<span class="PreProc">      </span><span class="Statement">\tau</span><span class="PreProc"> </span><span class="Statement">\cdot\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="Statement">\TT</span><span class="PreProc"> Y</span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="PreProc"> </span><span class="Statement">\geq</span><span class="PreProc"> </span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="Statement">\TT</span><span class="PreProc"> X</span><span class="Statement">\vv</span><span class="PreProc">{</span><span class="PreProc">x</span><span class="PreProc">}</span><span class="PreProc">\}</span><span class="PreProc"> </span><span class="Statement">\leq</span><span class="PreProc"> </span>
+<span class="Statement">\max</span><span class="PreProc">\{</span><span class="PreProc">1,\,</span><span class="Statement">\sigma</span><span class="PreProc">(X/Y)</span><span class="PreProc">\}</span><span class="PreProc">$</span>.<span class="Statement">\QED</span>
+</pre>
+</body>
+</html>

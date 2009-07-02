@@ -1,0 +1,7 @@
+set nocompatible
+set runtimepath+=~/.vim
+syntax on
+let c_comment_strings=1
+let t_Co=256
+source $VIMRUNTIME/plugin/tohtml.vim
+let html_use_css=1

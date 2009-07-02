@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\sms.c.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Comment { color: #80a0ff; }
+.Special { color: #ffa500; }
+.Statement { color: #ffff00; }
+pre { font-family: monospace; color: #cccccc; background-color: #000000; }
+body { font-family: monospace; color: #cccccc; background-color: #000000; }
+.PreProc { color: #ff80ff; }
+.Constant { color: #ffa0a0; }
+.Type { color: #60ff60; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="PreProc">#define UNICODE</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;windows.h&gt;</span>
+
+<span class="Type">int</span> main(<span class="Type">int</span> argc, <span class="Type">char</span> **argv) {
+  <span class="Type">int</span> speed = <span class="Constant">0</span>, speed1 = <span class="Constant">0</span>, speed2 = <span class="Constant">0</span>; <span class="Comment">// </span><span class="Constant">1</span><span class="Comment">-</span><span class="Constant">20</span>
+  printf(<span class="Constant">&quot;Set Mouse Speed by Maverick</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+
+  SystemParametersInfo(SPI_GETMOUSESPEED, <span class="Constant">0</span>, &amp;speed, <span class="Constant">0</span>);
+  printf(<span class="Constant">&quot;Current speed: </span><span class="Special">%2d</span><span class="Special">\n</span><span class="Constant">&quot;</span>, speed);
+
+  <span class="Statement">if</span> (argc == <span class="Constant">1</span>) <span class="Statement">return</span> <span class="Constant">0</span>;
+  <span class="Statement">if</span> (argc &gt;= <span class="Constant">2</span>) sscanf(argv[<span class="Constant">1</span>], <span class="Constant">&quot;</span><span class="Special">%d</span><span class="Constant">&quot;</span>, &amp;speed1);
+  <span class="Statement">if</span> (argc &gt;= <span class="Constant">3</span>) sscanf(argv[<span class="Constant">2</span>], <span class="Constant">&quot;</span><span class="Special">%d</span><span class="Constant">&quot;</span>, &amp;speed2);
+
+  <span class="Statement">if</span> (argc == <span class="Constant">2</span>) <span class="Comment">// set speed to first value</span>
+    speed = speed1;
+  <span class="Statement">else</span> <span class="Statement">if</span> (speed == speed1 || speed == speed2) <span class="Comment">// alternate</span>
+    speed = speed1 + speed2 - speed;
+  <span class="Statement">else</span>
+    speed = speed1;  <span class="Comment">// start with first value</span>
+
+  SystemParametersInfo(SPI_SETMOUSESPEED, <span class="Constant">0</span>,  speed, <span class="Constant">0</span>);
+  SystemParametersInfo(SPI_GETMOUSESPEED, <span class="Constant">0</span>, &amp;speed, <span class="Constant">0</span>);
+  printf(<span class="Constant">&quot;New speed:     </span><span class="Special">%2d</span><span class="Special">\n</span><span class="Constant">&quot;</span>, speed);
+  <span class="Statement">return</span> <span class="Constant">0</span>;
+}
+</pre>
+</body>
+</html>

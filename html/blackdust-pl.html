@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\csvformat.pl.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Number { color: #aca0a3; }
+.String { color: #cc9393; }
+.Statement { color: #8fffff; font-weight: bold; }
+.Special { color: #7f7f7f; }
+.Operator { color: #ffffff; }
+.Repeat { color: #8fffff; text-decoration: underline; }
+pre { font-family: monospace; color: #cccccc; background-color: #3f3f3f; }
+body { font-family: monospace; color: #cccccc; background-color: #3f3f3f; }
+.PreProc { color: #ffcfaf; font-weight: bold; }
+.Comment { color: #7f7f7f; }
+.Identifier { color: #ffffff; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="PreProc">#!perl -w</span>
+
+<span class="Comment"># Time-stamp: &lt;2002/04/06, 13:12:13 (EST), maverick, csvformat.pl&gt;</span>
+<span class="Comment"># Two pass CSV file to table formatter</span>
+
+<span class="Identifier">$delim</span> = <span class="Identifier">$#ARGV</span> &gt;= <span class="Number">1</span> ? <span class="Identifier">$ARGV</span>[<span class="Number">1</span>] : <span class="String">'</span><span class="String">,</span><span class="String">'</span>;
+<span class="Statement">print</span> <span class="Identifier">STDERR</span> <span class="String">&quot;</span><span class="String">Split pattern: </span><span class="Identifier">$delim</span><span class="Special">\n</span><span class="String">&quot;</span>;
+
+<span class="Comment"># first pass</span>
+<span class="Statement">open</span> <span class="Identifier">F</span>, <span class="String">&quot;</span><span class="String">&lt;</span><span class="Identifier">$ARGV</span><span class="String">[0]</span><span class="String">&quot;</span> <span class="Operator">or</span> <span class="Statement">die</span>;
+<span class="Repeat">while</span>(&lt;F&gt;)
+{
+  <span class="Statement">chomp</span>;
+  <span class="Identifier">$i</span> = <span class="Number">0</span>;
+  <span class="Statement">map</span> { <span class="Identifier">$max</span>[<span class="Identifier">$_</span>-&gt;[<span class="Number">1</span>]] = <span class="Identifier">$_</span>-&gt;[<span class="Number">0</span>] <span class="Statement">if</span> <span class="Identifier">$_</span>-&gt;[<span class="Number">0</span>] &gt; (<span class="Identifier">$max</span>[<span class="Identifier">$_</span>-&gt;[<span class="Number">1</span>]] || <span class="Number">0</span>) }
+    (<span class="Statement">map</span> {[<span class="Statement">length</span> <span class="Identifier">$_</span>, <span class="Identifier">$i</span>++]} <span class="Statement">split</span>(<span class="Identifier">$delim</span>));
+}
+<span class="Statement">close</span> <span class="Identifier">F</span>;
+
+<span class="Statement">print</span> <span class="Identifier">STDERR</span> <span class="String">'</span><span class="String">Field width:   </span><span class="String">'</span>, <span class="Statement">join</span>(<span class="String">'</span><span class="String">, </span><span class="String">'</span>, <span class="Identifier">@max</span>), <span class="String">&quot;</span><span class="Special">\n</span><span class="String">&quot;</span>;
+<span class="Statement">print</span> <span class="Identifier">STDERR</span> <span class="Statement">join</span>(<span class="String">'</span><span class="String"> </span><span class="String">'</span>, <span class="Statement">map</span> {<span class="String">'</span><span class="String">-</span><span class="String">'</span> x <span class="Identifier">$_</span>} <span class="Identifier">@max</span>);
+
+<span class="Comment"># second pass</span>
+<span class="Statement">open</span> <span class="Identifier">F</span>, <span class="String">&quot;</span><span class="String">&lt;</span><span class="Identifier">$ARGV</span><span class="String">[0]</span><span class="String">&quot;</span> <span class="Operator">or</span> <span class="Statement">die</span>;
+<span class="Repeat">while</span>(&lt;F&gt;)
+  {
+  <span class="Statement">chomp</span>;
+  <span class="Identifier">$i</span> = <span class="Number">0</span>;
+  <span class="Statement">map</span> { <span class="Statement">printf</span>(<span class="String">&quot;</span><span class="String">%-</span><span class="Identifier">$max</span><span class="String">[</span><span class="Identifier">$_</span><span class="String">-&gt;[1]]s </span><span class="String">&quot;</span>, <span class="Identifier">$_</span>-&gt;[<span class="Number">0</span>]) }
+    (<span class="Statement">map</span> {[<span class="Identifier">$_</span>, <span class="Identifier">$i</span>++]} <span class="Statement">split</span>(<span class="Identifier">$delim</span>));
+  <span class="Statement">print</span> <span class="String">&quot;</span><span class="Special">\n</span><span class="String">&quot;</span>;
+}
+<span class="Statement">close</span> <span class="Identifier">F</span>;
+</pre>
+</body>
+</html>

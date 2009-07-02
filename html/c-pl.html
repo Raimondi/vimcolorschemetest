@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\csvformat.pl.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Statement { color: #804040; font-weight: bold; }
+.Special { color: #6a5acd; }
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+.PreProc { color: #a020f0; }
+.Comment { color: #0000ff; }
+.Identifier { color: #008080; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="PreProc">#!perl -w</span>
+
+<span class="Comment"># Time-stamp: &lt;2002/04/06, 13:12:13 (EST), maverick, csvformat.pl&gt;</span>
+<span class="Comment"># Two pass CSV file to table formatter</span>
+
+<span class="Identifier">$delim</span> = <span class="Identifier">$#ARGV</span> &gt;= 1 ? <span class="Identifier">$ARGV</span>[1] : ',';
+<span class="Statement">print</span> <span class="Identifier">STDERR</span> &quot;Split pattern: <span class="Identifier">$delim</span><span class="Special">\n</span>&quot;;
+
+<span class="Comment"># first pass</span>
+<span class="Statement">open</span> <span class="Identifier">F</span>, &quot;&lt;<span class="Identifier">$ARGV</span>[0]&quot; <span class="Statement">or</span> <span class="Statement">die</span>;
+<span class="Statement">while</span>(&lt;F&gt;)
+{
+  <span class="Statement">chomp</span>;
+  <span class="Identifier">$i</span> = 0;
+  <span class="Statement">map</span> { <span class="Identifier">$max</span>[<span class="Identifier">$_</span>-&gt;[1]] = <span class="Identifier">$_</span>-&gt;[0] <span class="Statement">if</span> <span class="Identifier">$_</span>-&gt;[0] &gt; (<span class="Identifier">$max</span>[<span class="Identifier">$_</span>-&gt;[1]] || 0) }
+    (<span class="Statement">map</span> {[<span class="Statement">length</span> <span class="Identifier">$_</span>, <span class="Identifier">$i</span>++]} <span class="Statement">split</span>(<span class="Identifier">$delim</span>));
+}
+<span class="Statement">close</span> <span class="Identifier">F</span>;
+
+<span class="Statement">print</span> <span class="Identifier">STDERR</span> 'Field width:   ', <span class="Statement">join</span>(', ', <span class="Identifier">@max</span>), &quot;<span class="Special">\n</span>&quot;;
+<span class="Statement">print</span> <span class="Identifier">STDERR</span> <span class="Statement">join</span>(' ', <span class="Statement">map</span> {'-' x <span class="Identifier">$_</span>} <span class="Identifier">@max</span>);
+
+<span class="Comment"># second pass</span>
+<span class="Statement">open</span> <span class="Identifier">F</span>, &quot;&lt;<span class="Identifier">$ARGV</span>[0]&quot; <span class="Statement">or</span> <span class="Statement">die</span>;
+<span class="Statement">while</span>(&lt;F&gt;)
+  {
+  <span class="Statement">chomp</span>;
+  <span class="Identifier">$i</span> = 0;
+  <span class="Statement">map</span> { <span class="Statement">printf</span>(&quot;%-<span class="Identifier">$max</span>[<span class="Identifier">$_</span>-&gt;[1]]s &quot;, <span class="Identifier">$_</span>-&gt;[0]) }
+    (<span class="Statement">map</span> {[<span class="Identifier">$_</span>, <span class="Identifier">$i</span>++]} <span class="Statement">split</span>(<span class="Identifier">$delim</span>));
+  <span class="Statement">print</span> &quot;<span class="Special">\n</span>&quot;;
+}
+<span class="Statement">close</span> <span class="Identifier">F</span>;
+</pre>
+</body>
+</html>

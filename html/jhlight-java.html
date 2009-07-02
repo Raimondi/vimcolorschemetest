@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\GetEnv.java.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Constant { color: #880000; background-color: #dddddd; }
+.Statement { color: #440066; background-color: #dddddd; }
+.Operator { color: #000000; background-color: #dddddd; }
+.Type { color: #660044; background-color: #dddddd; }
+.Comment { color: #005500; background-color: #dddddd; }
+.Special { color: #553300; background-color: #dddddd; }
+.Identifier { color: #000088; background-color: #dddddd; }
+pre { font-family: monospace; color: #000000; background-color: #dddddd; }
+body { font-family: monospace; color: #000000; background-color: #dddddd; }
+.PreProc { color: #004466; background-color: #dddddd; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="PreProc">import</span> java.util.Map;
+<span class="PreProc">import</span> java.util.TreeSet;
+
+<span class="Type">public</span> <span class="Type">class</span> GetEnv {
+  <span class="Comment">/**</span>
+<span class="Comment">   *</span><span class="Special"> let's test generics</span>
+<span class="Comment">   </span><span class="Comment">* </span><span class="Special">@param</span><span class="Identifier"> args</span><span class="Comment"> the command line arguments</span>
+<span class="Comment">   */</span>
+  <span class="Type">public</span> <span class="Type">static</span> <span class="Type">void</span> main(String[] args) {
+    <span class="Comment">// get a map of environment variables</span>
+    Map&lt;String, String&gt; env = System.getenv();
+    <span class="Comment">// build a sorted set out of the keys and iterate</span>
+    <span class="Statement">for</span>(String k: <span class="Operator">new</span> TreeSet&lt;String&gt;(env.keySet())) {
+      System.out.printf(<span class="Constant">&quot;%s = %s</span><span class="Special">\n</span><span class="Constant">&quot;</span>, k, env.get(k));
+    }
+  }
+}
+</pre>
+</body>
+</html>

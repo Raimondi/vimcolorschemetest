@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\sms.c.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Comment { color: #0000ff; }
+.Special { color: #6a5acd; }
+.Statement { color: #804040; font-weight: bold; }
+.Type { color: #2e8b57; font-weight: bold; }
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+.PreProc { color: #a020f0; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="PreProc">#define UNICODE</span>
+<span class="PreProc">#include </span>&lt;windows.h&gt;
+
+<span class="Type">int</span> main(<span class="Type">int</span> argc, <span class="Type">char</span> **argv) {
+  <span class="Type">int</span> speed = 0, speed1 = 0, speed2 = 0; <span class="Comment">// </span>1<span class="Comment">-</span>20
+  printf(&quot;Set Mouse Speed by Maverick<span class="Special">\n</span>&quot;);
+
+  SystemParametersInfo(SPI_GETMOUSESPEED, 0, &amp;speed, 0);
+  printf(&quot;Current speed: <span class="Special">%2d</span><span class="Special">\n</span>&quot;, speed);
+
+  <span class="Statement">if</span> (argc == 1) <span class="Statement">return</span> 0;
+  <span class="Statement">if</span> (argc &gt;= 2) sscanf(argv[1], &quot;<span class="Special">%d</span>&quot;, &amp;speed1);
+  <span class="Statement">if</span> (argc &gt;= 3) sscanf(argv[2], &quot;<span class="Special">%d</span>&quot;, &amp;speed2);
+
+  <span class="Statement">if</span> (argc == 2) <span class="Comment">// set speed to first value</span>
+    speed = speed1;
+  <span class="Statement">else</span> <span class="Statement">if</span> (speed == speed1 || speed == speed2) <span class="Comment">// alternate</span>
+    speed = speed1 + speed2 - speed;
+  <span class="Statement">else</span>
+    speed = speed1;  <span class="Comment">// start with first value</span>
+
+  SystemParametersInfo(SPI_SETMOUSESPEED, 0,  speed, 0);
+  SystemParametersInfo(SPI_GETMOUSESPEED, 0, &amp;speed, 0);
+  printf(&quot;New speed:     <span class="Special">%2d</span><span class="Special">\n</span>&quot;, speed);
+  <span class="Statement">return</span> 0;
+}
+</pre>
+</body>
+</html>

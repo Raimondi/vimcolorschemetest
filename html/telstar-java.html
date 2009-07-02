@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\GetEnv.java.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.javaScopeDecl { color: #8040c0; }
+.Type { color: #9060c8; font-weight: bold; }
+.Comment { color: #604060; }
+.Special { color: #807087; }
+.Identifier { color: #686888; }
+.javaParen { color: #6080e0; }
+.javaParen1 { color: #80a0ff; }
+.Statement { color: #8070b0; font-weight: bold; }
+.Operator { color: #8080c0; }
+.javaParen2 { color: #a0c0ff; }
+.String { color: #999999; }
+pre { font-family: monospace; color: #5060c0; background-color: #000022; }
+body { font-family: monospace; color: #5060c0; background-color: #000022; }
+.javaExternal { color: #666666; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="javaExternal">import</span> java.util.Map;
+<span class="javaExternal">import</span> java.util.TreeSet;
+
+<span class="javaScopeDecl">public</span> <span class="Type">class</span> GetEnv {
+  <span class="Comment">/**</span>
+<span class="Comment">   *</span><span class="Special"> let's test generics</span>
+<span class="Comment">   </span><span class="Comment">* </span><span class="Special">@param</span><span class="Identifier"> args</span><span class="Comment"> the command line arguments</span>
+<span class="Comment">   */</span>
+  <span class="javaScopeDecl">public</span> <span class="Type">static</span> <span class="Type">void</span> main<span class="javaParen">(</span>String<span class="javaParen1">[]</span> args<span class="javaParen">)</span> {
+    <span class="Comment">// get a map of environment variables</span>
+    Map&lt;String, String&gt; env = System.getenv<span class="javaParen">()</span>;
+    <span class="Comment">// build a sorted set out of the keys and iterate</span>
+    <span class="Statement">for</span><span class="javaParen">(</span>String k: <span class="Operator">new</span> TreeSet&lt;String&gt;<span class="javaParen1">(</span>env.keySet<span class="javaParen2">()</span><span class="javaParen1">)</span><span class="javaParen">)</span> {
+      System.out.printf<span class="javaParen">(</span><span class="String">&quot;%s = %s</span><span class="Special">\n</span><span class="String">&quot;</span>, k, env.get<span class="javaParen1">(</span>k<span class="javaParen1">)</span><span class="javaParen">)</span>;
+    }
+  }
+}
+</pre>
+</body>
+</html>

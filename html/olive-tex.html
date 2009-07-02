@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\test.tex.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.Operator { color: #ffd700; }
+.Statement { color: #8fbc8f; font-weight: bold; }
+pre { font-family: monospace; color: #d9d9c3; background-color: #333300; }
+body { font-family: monospace; color: #d9d9c3; background-color: #333300; }
+.Comment { color: #bdb76b; background-color: #4c4c00; text-decoration: underline; }
+.texSection { color: #adff2f; }
+.Special { color: #ffdead; text-decoration: underline; }
+.texMatcher { color: #9acd32; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="Comment">% Time-stamp: &lt;2004/04/06, 16:46:43 (EST), maverick, test.tex&gt;</span>
+<span class="texSection">\subsection</span><span class="Special">{</span><span class="texMatcher">Strict diagonal-dominance</span><span class="Special">}</span>
+Suppose we are given a matrix <span class="Special">$</span>A<span class="Operator">=</span>L+D<span class="Special">$</span>, where <span class="Special">$</span>L<span class="Special">$</span> is a Laplacian and
+<span class="Special">$</span>D<span class="Special">$</span> is a nonnegative diagonal matrix, for which we seek to construct a
+preconditioner.
+
+We may construct a Support Tree Preconditioner, <span class="Special">$</span>B <span class="Operator">=</span>
+<span class="Statement">\begin</span><span class="Special">{</span>pmatrix<span class="Special">}</span> T <span class="Special">&amp;</span> U<span class="Special">\\</span>U<span class="Statement">\TT</span> <span class="Special">&amp;</span> W<span class="Statement">\end</span><span class="Special">{</span>pmatrix<span class="Special">}$</span> for <span class="Special">$</span>L<span class="Special">$</span> and to use <span class="Special">$</span>B'
+<span class="Operator">=</span><span class="Statement">\begin</span><span class="Special">{</span>pmatrix<span class="Special">}</span> T <span class="Special">&amp;</span> U <span class="Special">\\</span>U<span class="Statement">\TT</span> <span class="Special">&amp;</span> W+D<span class="Statement">\end</span><span class="Special">{</span>pmatrix<span class="Special">}$</span> as a preconditioner
+for <span class="Special">$</span>A<span class="Special">$</span>.  If we let <span class="Special">$</span>Q <span class="Operator">=</span> W - U<span class="Statement">\TT</span> T<span class="Statement">\IV</span> U<span class="Special">$</span>, by Lemma~<span class="Statement">\ref{</span><span class="Special">lem:stcg</span><span class="Statement">}</span> it
+suffices to bound <span class="Special">$</span><span class="Statement">\sigma</span>(A/Q+D)<span class="Special">$</span> and <span class="Special">$</span><span class="Statement">\sigma</span>(Q+D/A)<span class="Special">$</span>.
+
+<span class="Statement">\begin</span><span class="Special">{</span><span class="texSection">proposition</span><span class="Special">}</span><span class="Statement">\label{</span><span class="Special">prop:XZ-YZ</span><span class="Statement">}</span>
+If <span class="Special">$</span>X<span class="Special">$</span>, <span class="Special">$</span>Y<span class="Special">$</span>, and <span class="Special">$</span>Z<span class="Special">$</span> are spsd matrices of the same size then
+<span class="Special">$</span><span class="Statement">\sigma</span>(X+Z/Y+Z) <span class="Statement">\leq</span> <span class="Statement">\max</span><span class="Special">\{</span><span class="Statement">\sigma</span>(X/Y),\, 1<span class="Special">\}</span><span class="Special">$</span>.
+<span class="Statement">\end</span><span class="Special">{</span><span class="texSection">proposition</span><span class="Special">}</span>
+
+<span class="Statement">\Proof</span> We have <span class="Special">$</span><span class="Statement">\sigma</span>(X+Z/Y+Z) <span class="Operator">=</span>
+<span class="Statement">\min</span><span class="Special">\{</span><span class="Statement">\tau</span> <span class="Statement">\mid</span> <span class="Statement">\forall\vv</span><span class="Special">{</span>x<span class="Special">}</span>,\, <span class="Statement">\tau\cdot</span> <span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span><span class="Statement">\TT</span> (Y+Z)<span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span> <span class="Statement">\geq</span>
+       <span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span><span class="Statement">\TT</span>(X+Z)<span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span><span class="Special">\}</span> <span class="Operator">=</span>
+<span class="Statement">\min</span><span class="Special">\{</span><span class="Statement">\tau</span> <span class="Statement">\mid</span> <span class="Statement">\forall\vv</span><span class="Special">{</span>x<span class="Special">}</span>,\, (<span class="Statement">\tau</span>-1)<span class="Statement">\cdot</span> <span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span><span class="Statement">\TT</span> Z<span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span> +
+      <span class="Statement">\tau</span> <span class="Statement">\cdot\vv</span><span class="Special">{</span>x<span class="Special">}</span><span class="Statement">\TT</span> Y<span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span> <span class="Statement">\geq</span> <span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span><span class="Statement">\TT</span> X<span class="Statement">\vv</span><span class="Special">{</span>x<span class="Special">}</span><span class="Special">\}</span> <span class="Statement">\leq</span>
+<span class="Statement">\max</span><span class="Special">\{</span>1,\,<span class="Statement">\sigma</span>(X/Y)<span class="Special">\}</span><span class="Special">$</span>.<span class="Statement">\QED</span>
+</pre>
+</body>
+</html>

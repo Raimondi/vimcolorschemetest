@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C:\WorkingCopy\ColorTest\GetEnv.java.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=Big5">
+<style type="text/css">
+<!--
+.String { color: #cccccc; background-color: #1d1f42; }
+.SpecialChar { color: #ffdead; background-color: #1d1f42; }
+.Statement { color: #2e8b57; background-color: #1d1f42; font-weight: bold; }
+.StorageClass { color: #eee8cd; background-color: #1d1f42; font-weight: bold; }
+.Comment { color: #4682b4; background-color: #1d1f42; }
+.SpecialComment { color: #cdb38b; background-color: #1d1f42; }
+.Special { color: #ffdead; background-color: #1d1f42; }
+.Identifier { color: #cdc673; background-color: #1d1f42; }
+.Type { color: #f5deb3; background-color: #1d1f42; font-weight: bold; }
+pre { font-family: monospace; color: #a6bfbb; background-color: #1d1f42; }
+body { font-family: monospace; color: #a6bfbb; background-color: #1d1f42; }
+.PreProc { color: #fa8072; background-color: #1d1f42; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="PreProc">import</span> java.util.Map;
+<span class="PreProc">import</span> java.util.TreeSet;
+
+<span class="StorageClass">public</span> <span class="StorageClass">class</span> GetEnv {
+  <span class="Comment">/**</span>
+<span class="Comment">   *</span><span class="SpecialComment"> let's test generics</span>
+<span class="Comment">   </span><span class="Comment">* </span><span class="Special">@param</span><span class="Identifier"> args</span><span class="Comment"> the command line arguments</span>
+<span class="Comment">   */</span>
+  <span class="StorageClass">public</span> <span class="StorageClass">static</span> <span class="Type">void</span> main(String[] args) {
+    <span class="Comment">// get a map of environment variables</span>
+    Map&lt;String, String&gt; env = System.getenv();
+    <span class="Comment">// build a sorted set out of the keys and iterate</span>
+    <span class="Statement">for</span>(String k: <span class="Statement">new</span> TreeSet&lt;String&gt;(env.keySet())) {
+      System.out.printf(<span class="String">&quot;%s = %s</span><span class="SpecialChar">\n</span><span class="String">&quot;</span>, k, env.get(k));
+    }
+  }
+}
+</pre>
+</body>
+</html>
