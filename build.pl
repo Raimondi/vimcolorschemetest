@@ -1,23 +1,24 @@
 #!/usr/bin/perl -w
 # Time-stamp: <2005/02/18, 09:48:22 (EST), maverick, build.pl>
-# Usage: build.html example_input [# of schemes to use (for debug)]
 
 use strict;
 
 my $e = $ARGV[0] or die "Specify example input file";
 my $ee = $e;
 $ee =~ s/\\/\\\//g;
-print "Using $e as example input\n";
+print "Using $e as sample input\n";
 
 my $lang = $ARGV[1] or die "Specify a language";
 my $suffix = $ARGV[2] or die "Specify a suffix";
-
 my $numleft = $ARGV[3] || -1;
 print "Processing $numleft themes\n" if($numleft > 0);
 
 my $date = localtime;
+my $htmldir = '../html/';
+my $frontpage = 'http://code.google.com/p/gnuemacscolorthemetest/';
 
-open IDX, ">./html/index-$suffix.html" or die "Cannot open index-$suffix.html";
+open IDX, '>' . $htmldir . "index-$suffix.html"
+  or die "Cannot open index-$suffix.html";
 
 # html header
 my $title = 'VIM Color Scheme Test';
@@ -42,9 +43,7 @@ print IDX <<HEADER
     </style>
   </head>
   <body>
-    <script type="text/javascript" src="http://www.makepovertyhistory.org/whiteband_small_right.js"></script>
-    <noscript><a href="http://www.makepovertyhistory.org/">http://www.makepovertyhistory.org</a></noscript>
-    <h1><a href="./index.html">$title</a> - $lang</h1>
+    <h1><a href="$frontpage">$title</a> - $lang</h1>
     <script language="javascript">
       function changeHeight(h) {
         var tds = document.getElementsByTagName("td");
@@ -53,8 +52,8 @@ print IDX <<HEADER
     </script>
     <ul>
     <li>This page really requires a modern web browser. Click <a
-      href="./index.html">here</a> for more information.</li>
-    <li>Do your friends a favor. Link to the <a href="./index.html">parent page</a>
+      href="$frontpage">here</a> for more information.</li>
+    <li>Do your friends a favor. Link to the <a href="$frontpage">front page</a>
       instead. Thanks!</li>
     <li>Useful tip: decrease the text size to see more in each <tt>iframe</tt>.
       (For example, in Firefox press ctrl-minus and you will see.)</li>
@@ -96,12 +95,15 @@ print IDX <<FOOTER
     <p>Total: $counter schemes
     <p>Generated on $date by Maverick Woo</p>
 
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
-_uacct = "UA-139609-3";
-urchinTracker();
-</script>
+try {
+var pageTracker = _gat._getTracker("UA-9469900-3");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 
   </body>
 </html>
@@ -115,7 +117,7 @@ exit 0;
 
 sub gentable {
   my $group = shift;
-  my $vimcolorsdir = 'c:/UnixHome/maverick/.vim/colors';
+  my $vimcolorsdir = '../colors';
   opendir D, $vimcolorsdir
     or die "Cannot open colors directory";
 
@@ -138,7 +140,7 @@ sub gentable {
     next unless $cname;
 
     # skip color themes that I don't want to show
-    next if $cname eq "mavLilac";
+    # next if $cname eq "";
 
     # make sure it's the right group
     if ($group == 0) { #undefined brightness
@@ -154,7 +156,7 @@ sub gentable {
 
     # compute the timestamps
     my $colortime = (stat($vimcolorsdir . '/' . $f))[9] || 0;
-    my $htmltime = (stat('./html/' . $hname))[9] || 0;
+    my $htmltime = (stat($htmldir . $hname))[9] || 0;
 
     # generate iframe source
     if ($htmltime < $colortime) { #colorscheme is newer
@@ -163,9 +165,9 @@ sub gentable {
                    ($group == 1 ? 'dark' : 'light') . '"',
              '-c', '"colorscheme ' . $cname . '"',
              qw(-c "TOhtml" -c "w!" -c "qa"));
-      system('mv', $e . '.html', './html/' . $hname);
+      system('mv', $e . '.html', $htmldir . $hname);
       #system('sed', '-i', 's/>' . $ee . '.html' . '</>' . $cname . '</i', $hname);
-      utime $colortime, $colortime, './html/' . $hname;
+      utime $colortime, $colortime, $htmldir . $hname;
     } else {
       print ' [skipped]';
     }
@@ -183,7 +185,7 @@ ROW1
     # actual html to include iframe
     print IDX <<COL
           <td width="$colwidth%" height="300px">
-            <a class="frames" href="./$cname.vim">$cname</a><br>
+            <a class="frames" href="../colors/$cname.vim">$cname</a><br>
             <iframe src="$hname" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
           </td>
 COL
