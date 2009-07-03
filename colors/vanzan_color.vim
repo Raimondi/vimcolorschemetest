@@ -48,11 +48,11 @@ hi Visual    guibg=#102030
 
 hi NonText   guifg=#58626c guibg=#282c30
 " Kommentare
-hi Comment   guifg=#48525c gui=italic
-hi Todo      guifg=#484c50 guibg=NONE gui=italic,bold
+hi Comment   guifg=#404a5c gui=none
+hi Todo      guifg=#404a5c guibg=NONE gui=italic,bold
 
 " Konstanten
-hi Constant  guifg=#acb5bd gui=italic
+hi Constant  guifg=#808080 guibg=#282a2c  gui=none
 hi String    guifg=#a05050
 "guibg=#2c2428
 " Python: %(...)s - constructs, encoding, D: \n etc
@@ -66,18 +66,18 @@ hi Float   guifg=#6aa077
 
 " . D: debug, mixin, debug, scope, throw, Python: def
 "hi Statement   guifg=#907056 guibg=NONE gui=bold
-hi Statement   guifg=#908880 guibg=#302820 gui=NONE
+hi Statement   guifg=#506070 guibg=#081018 gui=underline
 " D: "case"
 hi Label guifg=#ff00ff
 hi Keyword guifg=#60a0b0
-hi Exception guifg=#d03000 gui=bold
+hi Exception guifg=#d03000 guibg=#080a0c gui=bold
 
-hi Operator  guifg=#8090c0 gui=italic
+hi Operator  guifg=#5070a0 gui=none
 " HTML: arguments
 "hi Type       guifg=#202020 gui=none
-hi Type        guifg=#c0c080 gui=none
+hi Type        guifg=#909060 gui=none
 " Python: Standard exceptions, True&False, D: template
-hi Structure  guifg=#e0e0e0 gui=underline
+hi Structure  guifg=#a07020  gui=underline
 " Python class names,  decorator names, function names
 hi Function    guifg=#d0a040 gui=italic,bold
 "gui=italic,underline
