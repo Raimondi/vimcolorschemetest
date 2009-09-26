@@ -15,7 +15,7 @@ print "Processing $numleft themes\n" if($numleft > 0);
 
 my $date = localtime;
 my $htmldir = '../html/';
-my $frontpage = 'http://code.google.com/p/gnuemacscolorthemetest/';
+my $frontpage = 'http://code.google.com/p/vimcolorschemetest/';
 
 open IDX, '>' . $htmldir . "index-$suffix.html"
   or die "Cannot open index-$suffix.html";
